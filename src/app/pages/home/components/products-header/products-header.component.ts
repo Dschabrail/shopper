@@ -28,4 +28,12 @@ import { MatCardModule } from '@angular/material/card';
   templateUrl: './products-header.component.html',
   styleUrl: './products-header.component.scss',
 })
-export class ProductsHeaderComponent {}
+export class ProductsHeaderComponent {
+sort = 'desc'; 
+
+
+onSortUpdated(newSort: string): void {
+this.sort = newSort;
+}
+
+}
