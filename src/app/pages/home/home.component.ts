@@ -5,9 +5,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { ProductsHeaderComponent } from './components/products-header/products-header.component';
 
 @Component({
@@ -28,4 +28,10 @@ import { ProductsHeaderComponent } from './components/products-header/products-h
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {}
+export class HomeComponent {
+  cols: number = 3;
+
+  onColumnsCountChange(colsNum: number): void {
+    this.cols = colsNum;
+  }
+}
