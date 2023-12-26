@@ -8,11 +8,13 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { ProductsHeaderComponent } from './components/products-header/products-header.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
+    ProductsHeaderComponent,
     MatTableModule,
     MatMenuModule,
     MatToolbarModule,
@@ -21,7 +23,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatButtonModule,
     MatGridListModule,
     MatSnackBarModule,
-    MatSidenavModule
+    MatSidenavModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
