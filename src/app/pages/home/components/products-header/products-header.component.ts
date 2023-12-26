@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -29,11 +29,19 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './products-header.component.scss',
 })
 export class ProductsHeaderComponent {
-sort = 'desc'; 
+  @Output() columnsCountChange = new EventEmitter<number>();
+  sort: string = 'desc';
+  itemsShowCount: number = 10;
 
+  onSortUpdated(newSort: string): void {
+    this.sort = newSort;
+  }
 
-onSortUpdated(newSort: string): void {
-this.sort = newSort;
-}
+  onItemsUpdate(count: number): void {
+    this.itemsShowCount = count;
+  }
 
+  onColumnsUpdated(colsNum: number): void {
+    this.columnsCountChange.emit(colsNum);
+  }
 }
