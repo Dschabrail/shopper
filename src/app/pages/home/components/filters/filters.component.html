@@ -6,7 +6,7 @@
     <mat-selection-list [multiple]="false">
         @for (category of categories; track $index) {
         <mat-list-option [value]="category">
-            <button >{{category}}</button>
+            <button (click)="onShowCategory(category)">{{category}}</button>
         </mat-list-option>}
     </mat-selection-list>
 </mat-expansion-panel>

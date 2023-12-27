@@ -32,8 +32,13 @@ import { FiltersComponent } from './components/filters/filters.component';
 })
 export class HomeComponent {
   cols: number = 3;
+  category: string | undefined;
 
   onColumnsCountChange(colsNum: number): void {
     this.cols = colsNum;
+  }
+
+  onShowCategory(newCategory: string): void {
+    this.category = newCategory;
   }
 }
