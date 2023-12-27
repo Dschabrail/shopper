@@ -9,12 +9,14 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ProductsHeaderComponent } from './components/products-header/products-header.component';
+import { FiltersComponent } from './components/filters/filters.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     ProductsHeaderComponent,
+    FiltersComponent,
     MatTableModule,
     MatMenuModule,
     MatToolbarModule,
