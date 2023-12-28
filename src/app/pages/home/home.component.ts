@@ -10,6 +10,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ProductsHeaderComponent } from './components/products-header/products-header.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import { ProductBoxComponent } from './components/product-box/product-box.component';
 
 const ROWS_HEIGHT: {[id: number]: number} = { 1: 400, 3: 335, 4: 350}
 
@@ -28,6 +29,7 @@ const ROWS_HEIGHT: {[id: number]: number} = { 1: 400, 3: 335, 4: 350}
     MatGridListModule,
     MatSnackBarModule,
     MatSidenavModule,
+    ProductBoxComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
