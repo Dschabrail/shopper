@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -9,7 +9,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-box',
@@ -25,9 +25,14 @@ import { CurrencyPipe } from '@angular/common';
     MatSnackBarModule,
     MatSidenavModule,
     MatCardModule,
-    CurrencyPipe
+    CurrencyPipe,
+    CommonModule
   ],
   templateUrl: './product-box.component.html',
   styleUrl: './product-box.component.scss',
 })
-export class ProductBoxComponent {}
+export class ProductBoxComponent {
+@Input() fullWidthMode = false;
+
+
+}
