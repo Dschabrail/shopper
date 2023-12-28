@@ -9,6 +9,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-box',
@@ -24,6 +25,7 @@ import { MatCardModule } from '@angular/material/card';
     MatSnackBarModule,
     MatSidenavModule,
     MatCardModule,
+    CurrencyPipe
   ],
   templateUrl: './product-box.component.html',
   styleUrl: './product-box.component.scss',
