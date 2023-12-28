@@ -5,7 +5,7 @@
             <div>
                 <h5>Shoes</h5>
                 <p class="truncate hover:whitespace-normal">Snickers</p>
-                <p>description</p>
+                @if (fullWidthMode) { <p>description</p>}
             </div>
             <div class="flex justify-between">
                 <span class="text-red-400">{{ '150' | currency: 'EUR' }}</span>
