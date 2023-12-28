@@ -6,7 +6,7 @@ import { HeaderComponent } from './components/header/header.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  template: `<app-header></app-header><router-outlet></router-outlet>`,
+  template: `<app-header class="flex justify-center"></app-header><router-outlet></router-outlet>`,
   styleUrl: './app.component.scss',
   imports: [CommonModule, RouterOutlet, HeaderComponent],
 })
