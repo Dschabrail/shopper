@@ -5,6 +5,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { CurrencyPipe } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-header',
@@ -15,7 +17,8 @@ import { CurrencyPipe } from '@angular/common';
     MatBadgeModule,
     MatButtonModule,
     MatMenuModule,
-    CurrencyPipe
+    CurrencyPipe,
+    RouterModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
