@@ -10,6 +10,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { CurrencyPipe, CommonModule } from '@angular/common';
+import { Product } from '../../../../components/models/product.model';
 
 @Component({
   selector: 'app-product-box',
@@ -26,13 +27,24 @@ import { CurrencyPipe, CommonModule } from '@angular/common';
     MatSidenavModule,
     MatCardModule,
     CurrencyPipe,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './product-box.component.html',
   styleUrl: './product-box.component.scss',
 })
 export class ProductBoxComponent {
 @Input() fullWidthMode = false;
+product: Product | undefined = {
+  id: 1,
+  title: 'snickers',
+  price: 150,
+  category: 'shoes',
+  description: 'Description',
+  image: 'https://via.placeholder.com/150',
+};
 
 
+onAddToCart(): void {
+
+}
 }
