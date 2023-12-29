@@ -29,12 +29,13 @@ const ROWS_HEIGHT: {[id: number]: number} = { 1: 400, 3: 335, 4: 350}
     MatGridListModule,
     MatSnackBarModule,
     MatSidenavModule,
-    ProductBoxComponent
+    ProductBoxComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
+
   cols: number = 3;
   rowHeight:number = ROWS_HEIGHT[this.cols]
   category: string | undefined;
@@ -47,4 +48,8 @@ export class HomeComponent {
   onShowCategory(newCategory: string): void {
     this.category = newCategory;
   }
+
+  onAddToCart() {
+    
+    }
 }

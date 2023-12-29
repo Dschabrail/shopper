@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -42,9 +42,9 @@ product: Product | undefined = {
   description: 'Description',
   image: 'https://via.placeholder.com/150',
 };
-
+@Output() addToCart = new EventEmitter();
 
 onAddToCart(): void {
-
+this.addToCart.emit(this.product);
 }
 }
