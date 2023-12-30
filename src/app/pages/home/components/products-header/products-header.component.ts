@@ -30,15 +30,19 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class ProductsHeaderComponent {
   @Output() columnsCountChange = new EventEmitter<number>();
+  @Output() itemsChange = new EventEmitter<number>();
+  @Output() sortChange = new EventEmitter<string>();
   sort: string = 'desc';
   itemsShowCount: number = 10;
 
   onSortUpdated(newSort: string): void {
     this.sort = newSort;
+    this.sortChange.emit(newSort);
   }
 
   onItemsUpdate(count: number): void {
     this.itemsShowCount = count;
+    this.itemsChange.emit(count);
   }
 
   onColumnsUpdated(colsNum: number): void {

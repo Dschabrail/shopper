@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
+import { StoreService } from '../../../../services/store.service';
 
 @Component({
   selector: 'app-filters',
@@ -13,6 +14,8 @@ export class FiltersComponent {
   @Output() showCategory = new EventEmitter<string>();
 
   categories = ['shoes', 'sports'];
+
+  constructor( private storeService: StoreService) {}
 
   onShowCategory(category: string): void {
     this.showCategory.emit(category);
