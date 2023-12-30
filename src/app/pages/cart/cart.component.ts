@@ -18,6 +18,7 @@ import { CartService } from '../../services/cart.service';
     MatTableModule,
     CurrencyPipe,
     MatIconModule,
+
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
