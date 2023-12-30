@@ -33,7 +33,7 @@ export class ProductsHeaderComponent {
   @Output() itemsChange = new EventEmitter<number>();
   @Output() sortChange = new EventEmitter<string>();
   sort: string = 'desc';
-  itemsShowCount: number = 10;
+  itemsShowCount: number = 12;
 
   onSortUpdated(newSort: string): void {
     this.sort = newSort;

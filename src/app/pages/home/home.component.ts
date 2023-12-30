@@ -88,4 +88,14 @@ export class HomeComponent {
       this.productsSubcription.unsubscribe();
     }
   }
+
+  onItemsCountChange(newCount: number): void {
+    this.count = newCount.toString();
+    this.getProducts();
+  }
+
+  onSortChange(newSort: string) {
+    this.sort = newSort;
+    this.getProducts();
+  }
 }
