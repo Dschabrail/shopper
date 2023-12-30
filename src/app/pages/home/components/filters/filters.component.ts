@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { StoreService } from '../../../../services/store.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-filters',
@@ -12,16 +13,26 @@ import { StoreService } from '../../../../services/store.service';
 })
 export class FiltersComponent {
   @Output() showCategory = new EventEmitter<string>();
+  categoriesSubscription: Subscription | undefined;
+  categories: Array<string> | undefined;
 
-  categories = [];
+  constructor(private storeService: StoreService) {}
 
-  constructor( private storeService: StoreService) {}
-
-ngOnInit(): void {
-  this.storeService.getAllCategoris();
-}
+  ngOnInit(): void {
+    this.categoriesSubscription = this.storeService
+      .getAllCategoris()
+      .subscribe((response) => {
+        this.categories = response;
+      });
+  }
 
   onShowCategory(category: string): void {
     this.showCategory.emit(category);
+  }
+
+  ngOnDestroy(): void {
+    if (this.categoriesSubscription) {
+      this.categoriesSubscription.unsubscribe();
+    }
   }
 }
