@@ -8,7 +8,7 @@ import { CurrencyPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { CartService } from '../../services/cart.service';
 import { HttpClient } from '@angular/common/http';
-import {loadStripe} from '@stripe/stripe-js/pure';
+import { loadStripe } from '@stripe/stripe-js';
 
 @Component({
   selector: 'app-cart',
@@ -76,10 +76,17 @@ export class CartComponent {
   }
 
   onCheckout(): void {
-    this.http.post('http:localhost: 4242/checkout', {
-      items: this.cart.items,
-    }).subscribe(async (res: any) => {
-      let stripe = await 
-    });
+    this.http
+      .post('http:localhost: 4242/checkout', {
+        items: this.cart.items,
+      })
+      .subscribe(async (res: any) => {
+        let stripe = await loadStripe(
+          'pk_test_51OT8QiJbIN7bJt7js2HO7EATWW9BMWFQ53iGoIfpAD9XxICZzQkC1xo9g1quYWtvVQeaZV6Ij4vW4RftMWWIbhCq00pTM3pzco'
+        );
+        stripe?.redirectToCheckout({
+          sessionId: res.id
+        })
+      });
   }
 }
