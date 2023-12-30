@@ -13,9 +13,13 @@ import { StoreService } from '../../../../services/store.service';
 export class FiltersComponent {
   @Output() showCategory = new EventEmitter<string>();
 
-  categories = ['shoes', 'sports'];
+  categories = [];
 
   constructor( private storeService: StoreService) {}
+
+ngOnInit(): void {
+  this.storeService.getAllCategoris();
+}
 
   onShowCategory(category: string): void {
     this.showCategory.emit(category);
