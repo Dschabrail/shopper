@@ -13,6 +13,8 @@ import { FiltersComponent } from './components/filters/filters.component';
 import { ProductBoxComponent } from './components/product-box/product-box.component';
 import { CartService } from '../../services/cart.service';
 import { Product } from '../../components/models/product.model';
+import { Subscription } from 'rxjs';
+import { StoreService } from '../../services/store.service';
 
 const ROWS_HEIGHT: { [id: number]: number } = { 1: 400, 3: 335, 4: 350 };
 
@@ -40,8 +42,27 @@ export class HomeComponent {
   cols: number = 3;
   rowHeight: number = ROWS_HEIGHT[this.cols];
   category: string | undefined;
+  products: Array<Product> | undefined;
+  sort = 'desc';
+  count = '10';
+  productsSubcription: Subscription | undefined;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private storeService: StoreService
+  ) {}
+
+  ngOnInit(): void {
+    this.getProducts();
+  }
+
+  getProducts(): void {
+    this.storeService
+      .getAllProducts(this.count, this.sort)
+      .subscribe((_products) => {
+        this.products = _products;
+      });
+  }
 
   onColumnsCountChange(colsNum: number): void {
     this.cols = colsNum;
@@ -60,5 +81,11 @@ export class HomeComponent {
       quantity: 1,
       id: product.id,
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.productsSubcription) {
+      this.productsSubcription.unsubscribe();
+    }
   }
 }
