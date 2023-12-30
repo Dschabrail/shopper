@@ -45,7 +45,7 @@ export class HomeComponent {
   products: Array<Product> | undefined;
   sort = 'desc';
   count = '10';
-  productsSubcription: Subscription | undefined;
+  productsSubscription: Subscription | undefined;
 
   constructor(
     private cartService: CartService,
@@ -57,8 +57,8 @@ export class HomeComponent {
   }
 
   getProducts(): void {
-    this.storeService
-      .getAllProducts(this.count, this.sort)
+    this.productsSubscription = this.storeService
+      .getAllProducts(this.count, this.sort, this.category)
       .subscribe((_products) => {
         this.products = _products;
       });
@@ -71,6 +71,7 @@ export class HomeComponent {
 
   onShowCategory(newCategory: string): void {
     this.category = newCategory;
+    this.getProducts();
   }
 
   onAddToCart(product: Product): void {
@@ -84,8 +85,8 @@ export class HomeComponent {
   }
 
   ngOnDestroy(): void {
-    if (this.productsSubcription) {
-      this.productsSubcription.unsubscribe();
+    if (this.productsSubscription) {
+      this.productsSubscription.unsubscribe();
     }
   }
 

@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { CartService } from '../../services/cart.service';
+import { HttpClient } from '@angular/common/http';
+import {loadStripe} from '@stripe/stripe-js/pure';
 
 @Component({
   selector: 'app-cart',
@@ -18,7 +20,6 @@ import { CartService } from '../../services/cart.service';
     MatTableModule,
     CurrencyPipe,
     MatIconModule,
-
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
@@ -45,7 +46,7 @@ export class CartComponent {
     'action',
   ];
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.cartService.cart.subscribe((_cart: Cart) => {
@@ -74,5 +75,11 @@ export class CartComponent {
     this.cartService.removeFromCart(item);
   }
 
-  onCheckout() {}
+  onCheckout(): void {
+    this.http.post('http:localhost: 4242/checkout', {
+      items: this.cart.items,
+    }).subscribe(async (res: any) => {
+      let stripe = await 
+    });
+  }
 }

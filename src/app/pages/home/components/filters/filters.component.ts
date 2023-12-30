@@ -13,21 +13,21 @@ import { Subscription } from 'rxjs';
 })
 export class FiltersComponent {
   @Output() showCategory = new EventEmitter<string>();
+  categories: string[] | undefined;
   categoriesSubscription: Subscription | undefined;
-  categories: Array<string> | undefined;
 
   constructor(private storeService: StoreService) {}
 
   ngOnInit(): void {
     this.categoriesSubscription = this.storeService
-      .getAllCategoris()
-      .subscribe((response) => {
+      .getAllCategories()
+      .subscribe((response: Array<string>) => {
         this.categories = response;
       });
   }
 
   onShowCategory(category: string): void {
-    this.showCategory.emit(category);
+    this.showCategory.next(category);
   }
 
   ngOnDestroy(): void {
