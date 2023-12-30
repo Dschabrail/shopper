@@ -6,6 +6,7 @@ import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -43,33 +44,23 @@ export class CartComponent {
     'action',
   ];
 
+  constructor(private cartService: CartService) {}
+
   ngOnInit(): void {
     this.dataSource = this.cart.items;
   }
 
   getTotal(items: Array<CartItem>): number {
-    return items
-      .map((item) => item.price * item.quantity)
-      .reduce((prev, current) => prev + current, 0);
+    return this.cartService.getTotal(items);
   }
 
-  onRemoveQuantity() {
+  onRemoveQuantity() {}
 
-  }
+  onAddQuantity() {}
 
-  onAddQuantity() {
-    
-  }
+  onClearCart() {}
 
-  onClearCart() {
+  onRemoveFromCart() {}
 
-  }
-
-  onRemoveFromCart() {
-
-  }
-
-  onCheckout() {
-
-  }
+  onCheckout() {}
 }
