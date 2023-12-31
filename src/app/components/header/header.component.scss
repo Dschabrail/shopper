@@ -1,0 +1,10 @@
+.menu {
+    cursor: pointer;
+    opacity: 0;
+}
+
+@media(max-width: 1200px) {
+    .menu{
+        opacity: 1;
+    }
+}
