@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GlobalVariableService {
-sideNaveOpen = true;
+  sideNaveOpen: boolean = true;
 
+  constructor() {}
 
-  constructor() { }
+  checkWindowWidth() {
+    if (window.innerWidth <= 1200) {
+      this.sideNaveOpen = false;
+    }
+  }
 }

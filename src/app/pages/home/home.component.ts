@@ -15,6 +15,8 @@ import { CartService } from '../../services/cart.service';
 import { Product } from '../../components/models/product.model';
 import { Subscription } from 'rxjs';
 import { StoreService } from '../../services/store.service';
+import { GlobalVariableService } from '../../services/global-variable.service';
+import { CommonModule } from '@angular/common';
 
 const ROWS_HEIGHT: { [id: number]: number } = { 1: 400, 3: 335, 4: 350 };
 
@@ -34,6 +36,7 @@ const ROWS_HEIGHT: { [id: number]: number } = { 1: 400, 3: 335, 4: 350 };
     MatSnackBarModule,
     MatSidenavModule,
     ProductBoxComponent,
+    CommonModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -49,10 +52,12 @@ export class HomeComponent {
 
   constructor(
     private cartService: CartService,
-    private storeService: StoreService
+    private storeService: StoreService,
+    public variableService: GlobalVariableService,
   ) {}
 
   ngOnInit(): void {
+    this.variableService.checkWindowWidth();
     this.getProducts();
   }
 

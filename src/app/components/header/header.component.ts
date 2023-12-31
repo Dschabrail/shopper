@@ -8,6 +8,7 @@ import { CurrencyPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Cart, CartItem } from '../models/cart.model';
 import { CartService } from '../../services/cart.service';
+import { GlobalVariableService } from '../../services/global-variable.service';
 
 @Component({
   selector: 'app-header',
@@ -39,7 +40,10 @@ export class HeaderComponent {
       .reduce((prev, current) => prev + current, 0);
   }
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private variableService: GlobalVariableService
+  ) {}
 
   getTotal(items: Array<CartItem>): number {
     return this.cartService.getTotal(items);
@@ -47,5 +51,9 @@ export class HeaderComponent {
 
   clearCart() {
     this.cartService.clearCart();
+  }
+
+  toggleSideNav() {
+    this.variableService.sideNaveOpen = !this.variableService.sideNaveOpen;
   }
 }

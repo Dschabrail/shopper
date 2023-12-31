@@ -1,8 +1,8 @@
 <mat-drawer-container [autosize]="true" class="min-h-full max-w-7xl mx-auto border-x">
-    <mat-drawer mode="side" opened class="p-6 full-width">
+    <mat-drawer mode="side" opened class="p-6 full-width" [ngClass]="{'hidden hide': !variableService.sideNaveOpen}">
         <app-filters (showCategory)="onShowCategory($event)"></app-filters>
     </mat-drawer>
-    <mat-drawer-content class="p-6">
+    <mat-drawer-content class="p-6" [ngClass]="{'margin': !variableService.sideNaveOpen}">
         <app-products-header (itemsChange)="onItemsCountChange($event)" (sortChange)="onSortChange($event)" (columnsCountChange)="onColumnsCountChange($event)"></app-products-header>
         <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="rowHeight">
             @for (product of products; track $index) {
