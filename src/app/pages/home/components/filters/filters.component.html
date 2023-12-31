@@ -4,10 +4,13 @@
         <mat-panel-title> CATEGORIES</mat-panel-title>
     </mat-expansion-panel-header>
     <mat-selection-list [multiple]="false">
+        <mat-list-item>
+            <button (click)="onShowCategory(undefined)">ALL</button>
+        </mat-list-item>
         @for (category of categories; track $index) {
-        <mat-list-option [value]="category">
-            <button (click)="onShowCategory(category)">{{category}}</button>
-        </mat-list-option>}
+        <mat-list-item>
+            <button (click)="onShowCategory(category)">{{category.toUpperCase()}}</button>
+        </mat-list-item>}
     </mat-selection-list>
 </mat-expansion-panel>
 }

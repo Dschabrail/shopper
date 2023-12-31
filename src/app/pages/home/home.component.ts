@@ -44,7 +44,7 @@ export class HomeComponent {
   category: string | undefined;
   products: Array<Product> | undefined;
   sort = 'desc';
-  count = '10';
+  count = '12';
   productsSubscription: Subscription | undefined;
 
   constructor(
@@ -69,7 +69,7 @@ export class HomeComponent {
     this.rowHeight = ROWS_HEIGHT[this.cols];
   }
 
-  onShowCategory(newCategory: string): void {
+  onShowCategory(newCategory: string | undefined): void {
     this.category = newCategory;
     this.getProducts();
   }

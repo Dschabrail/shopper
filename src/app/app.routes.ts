@@ -5,5 +5,5 @@ import { CartComponent } from './pages/cart/cart.component';
 export const routes: Routes = [
 {path: 'home', component: HomeComponent},
 {path: 'cart', component: CartComponent},
-{path: '', redirectTo: 'cart', pathMatch: 'full'},   
+{path: '', redirectTo: 'home', pathMatch: 'full'},   
 ];

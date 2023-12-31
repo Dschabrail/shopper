@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './filters.component.scss',
 })
 export class FiltersComponent {
-  @Output() showCategory = new EventEmitter<string>();
+  @Output() showCategory = new EventEmitter<string | undefined>();
   categories: string[] | undefined;
   categoriesSubscription: Subscription | undefined;
 
@@ -26,8 +26,12 @@ export class FiltersComponent {
       });
   }
 
-  onShowCategory(category: string): void {
+  onShowCategory(category: string | undefined): void {
     this.showCategory.next(category);
+  }
+
+  getAllProducts(): void {
+    this.storeService.getAllProducts('12', 'desc', undefined);
   }
 
   ngOnDestroy(): void {
