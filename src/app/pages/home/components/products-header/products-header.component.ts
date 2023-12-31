@@ -9,6 +9,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-products-header',
@@ -24,6 +25,7 @@ import { MatCardModule } from '@angular/material/card';
     MatSnackBarModule,
     MatSidenavModule,
     MatCardModule,
+    CommonModule
   ],
   templateUrl: './products-header.component.html',
   styleUrl: './products-header.component.scss',
@@ -34,6 +36,11 @@ export class ProductsHeaderComponent {
   @Output() sortChange = new EventEmitter<string>();
   sort: string = 'desc';
   itemsShowCount: number = 12;
+  dNone: boolean = false;
+
+  ngOnInit(){
+    this.checkWindoWidth();
+  }
 
   onSortUpdated(newSort: string): void {
     this.sort = newSort;
@@ -47,5 +54,12 @@ export class ProductsHeaderComponent {
 
   onColumnsUpdated(colsNum: number): void {
     this.columnsCountChange.emit(colsNum);
+  }
+
+  checkWindoWidth(){
+    if (window.innerWidth <= 800) {
+      this.dNone = true;
+      this.onColumnsUpdated(1);
+    }
   }
 }
