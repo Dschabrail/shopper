@@ -16,6 +16,7 @@ import { Product } from '../../components/models/product.model';
 import { Subscription } from 'rxjs';
 import { StoreService } from '../../services/store.service';
 import { CommonModule } from '@angular/common';
+import { GlobalVariableService } from '../../services/global-variable.service';
 
 const ROWS_HEIGHT: { [id: number]: number } = { 1: 400, 3: 335, 4: 350 };
 
@@ -48,11 +49,11 @@ export class HomeComponent {
   sort = 'desc';
   count = '12';
   productsSubscription: Subscription | undefined;
-  sideNaveOpen: boolean = true;
 
   constructor(
     private cartService: CartService,
     private storeService: StoreService,
+    public variableService: GlobalVariableService
   ) {
     window.addEventListener('resize', this.handleWindowResize);
   }
@@ -112,9 +113,9 @@ export class HomeComponent {
 
   checkWindowWidth() {
     if (window.innerWidth <= 1200) {
-      this.sideNaveOpen = false;
+      this.variableService.sideNaveOpen = false;
     } else {
-      this.sideNaveOpen = true;
+      this.variableService.sideNaveOpen = true;
     }
   }
 }

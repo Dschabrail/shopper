@@ -25,7 +25,7 @@ import { CommonModule } from '@angular/common';
     MatSnackBarModule,
     MatSidenavModule,
     MatCardModule,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './products-header.component.html',
   styleUrl: './products-header.component.scss',
@@ -38,8 +38,12 @@ export class ProductsHeaderComponent {
   itemsShowCount: number = 12;
   dNone: boolean = false;
 
-  ngOnInit(){
-    this.checkWindoWidth();
+  constructor() {
+    window.addEventListener('resize', this.handleWindowResize);
+  }
+
+  ngOnInit() {
+    this.checkWindowWidth();
   }
 
   onSortUpdated(newSort: string): void {
@@ -56,10 +60,16 @@ export class ProductsHeaderComponent {
     this.columnsCountChange.emit(colsNum);
   }
 
-  checkWindoWidth(){
+  handleWindowResize = () => {
+    this.checkWindowWidth();
+  };
+
+  checkWindowWidth() {
     if (window.innerWidth <= 800) {
       this.dNone = true;
       this.onColumnsUpdated(1);
+    } else {
+      this.dNone = false;
     }
   }
 }
