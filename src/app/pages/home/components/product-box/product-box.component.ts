@@ -43,7 +43,9 @@ export class ProductBoxComponent {
   }
 
   ngOnInit(): void {
-    this.checkWindowWidth();
+    setTimeout(() => {
+      this.checkWindowWidth();
+    }, 0);
   }
 
   handleWindowResize = () => {

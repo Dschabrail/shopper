@@ -60,7 +60,9 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.getProducts();
-    this.checkWindowWidth();
+    setTimeout(() => {
+      this.checkWindowWidth();
+    }, 0);
   }
 
   getProducts(): void {

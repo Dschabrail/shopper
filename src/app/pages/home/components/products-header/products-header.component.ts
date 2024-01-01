@@ -43,7 +43,9 @@ export class ProductsHeaderComponent {
   }
 
   ngOnInit() {
-    this.checkWindowWidth();
+    setTimeout(() => {
+      this.checkWindowWidth();
+    }, 0);
   }
 
   onSortUpdated(newSort: string): void {
