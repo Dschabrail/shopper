@@ -11,6 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { CurrencyPipe, CommonModule } from '@angular/common';
 import { Product } from '../../../../components/models/product.model';
+import { GlobalVariableService } from '../../../../services/global-variable.service';
 
 @Component({
   selector: 'app-product-box',
@@ -33,11 +34,31 @@ import { Product } from '../../../../components/models/product.model';
   styleUrl: './product-box.component.scss',
 })
 export class ProductBoxComponent {
-@Input() fullWidthMode = false;
-@Input() product: Product | undefined;
-@Output() addToCart = new EventEmitter();
+  @Input() fullWidthMode = false;
+  @Input() product: Product | undefined;
+  @Output() addToCart = new EventEmitter();
 
-onAddToCart(): void {
-this.addToCart.emit(this.product);
-}
+  constructor(public variableService: GlobalVariableService) {
+    window.addEventListener('resize', this.handleWindowResize);
+  }
+
+  ngOnInit(): void {
+    this.checkWindowWidth();
+  }
+
+  handleWindowResize = () => {
+    this.checkWindowWidth();
+  };
+
+  checkWindowWidth() {
+    if (window.innerWidth <= 620) {
+      this.variableService.productBoxResponsiv = true;
+    } else {
+      this.variableService.productBoxResponsiv = false;
+    }
+  }
+
+  onAddToCart(): void {
+    this.addToCart.emit(this.product);
+  }
 }

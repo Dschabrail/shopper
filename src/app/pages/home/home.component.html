@@ -2,8 +2,15 @@
     <mat-drawer mode="side" opened class="p-6 full-width" [ngClass]="{'hidden hide': !variableService.sideNaveOpen}">
         <app-filters (showCategory)="onShowCategory($event)"></app-filters>
     </mat-drawer>
-    <mat-drawer-content class="p-6" [ngClass]="{'margin': !variableService.sideNaveOpen}">
-        <app-products-header (itemsChange)="onItemsCountChange($event)" (sortChange)="onSortChange($event)" (columnsCountChange)="onColumnsCountChange($event)"></app-products-header>
+    <mat-drawer-content class="p-6 p-responsiv" [ngClass]="{'margin': !variableService.sideNaveOpen}">
+        <app-products-header (itemsChange)="onItemsCountChange($event)" (sortChange)="onSortChange($event)"
+            (columnsCountChange)="onColumnsCountChange($event)"></app-products-header>
+        @if (variableService.productBoxResponsiv) {
+        <div class="flex flex-col gap-5">
+            @for (product of products; track $index) {
+            <app-product-box [product]="product" (addToCart)="onAddToCart($event)" class="w-full card"
+                [fullWidthMode]="cols === 1"></app-product-box>}
+        </div>} @else {
         <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="rowHeight">
             @for (product of products; track $index) {
             <mat-grid-tile>
@@ -12,5 +19,6 @@
             </mat-grid-tile>
             }
         </mat-grid-list>
+        }
     </mat-drawer-content>
 </mat-drawer-container>

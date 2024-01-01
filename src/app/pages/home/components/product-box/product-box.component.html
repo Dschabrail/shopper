@@ -1,6 +1,6 @@
-@if (product) {
+@if (product && !variableService.productBoxResponsiv) {
 <mat-card [ngClass]="{'text-center': !fullWidthMode}">
-    <div [ngClass]="{flex: fullWidthMode}">
+    <div class="card-responsiv" [ngClass]="{flex: fullWidthMode}">
         <img [ngClass]="{'h-200px': !fullWidthMode, 'h-[360px] w-[240px] object-contain paddingFull': fullWidthMode}"
             class="mx-auto h-[200px] padding" [src]="product.image" alt="product">
         <div class="w-full p-3" [ngClass]="{'px-8 flex flex-col justify-between': fullWidthMode}">
@@ -8,13 +8,30 @@
                 <h5><strong>{{product.category}}</strong></h5>
                 <p [ngClass]="{'hover:whitespace-normal': !fullWidthMode, 'whitespace-normal': fullWidthMode}"
                     class="truncate font-medium">{{product.title}}</p>
-                @if (fullWidthMode) { <p>{{product.description}}</p>}
+                @if (fullWidthMode) { <p class="max-h-44 overflow-y-scroll">{{product.description}}</p>}
             </div>
             <div class="flex justify-between">
-                <span class="text-red-400">{{ product.price| currency: 'EUR' }}</span>
+                <span class="align-middle text-red-400">{{ product.price| currency: 'EUR' }}</span>
                 <button (click)="onAddToCart()"><mat-icon class="text-gray-500">shopping_cart</mat-icon></button>
             </div>
         </div>
     </div>
 </mat-card>
+}
+
+@if (product && variableService.productBoxResponsiv) {
+<div class="card-responsiv p-3 bg-white">
+    <img class="m-auto" [src]="product.image" alt="product">
+    <div class="w-full">
+        <div>
+            <h5><strong>{{product.category}}</strong></h5>
+            <p class="font-medium">{{product.title}}</p>
+            <p class="max-h-44 overflow-y-scroll">{{product.description}}</p>
+        </div>
+        <div class="flex justify-between">
+            <span class="align-middle text-red-400">{{ product.price| currency: 'EUR' }}</span>
+            <button (click)="onAddToCart()"><mat-icon class="text-gray-500">shopping_cart</mat-icon></button>
+        </div>
+    </div>
+</div>
 }
