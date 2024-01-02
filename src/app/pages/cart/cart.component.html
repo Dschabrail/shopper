@@ -58,7 +58,8 @@
         </button>
       </td>
       <td mat-footer-cell *matFooterCellDef>
-        <button style="color: white; background-color: #3BB143;" (click)="onCheckout()" mat-raised-button class="float-right">
+        <button style="color: white; background-color: #3BB143;" (click)="onCheckout()" mat-raised-button
+          class="float-right">
           Proceed To Checkout
         </button>
       </td>
@@ -73,7 +74,18 @@
 <div>
 
 
-<div></div>
+  <div class="flex justify-between p-3 gap-4">
+    <div class="flex gap-3">
+      <button mat-raised-button routerLink="/home">Continue Shopping</button>
+      <button (click)="clearCart()" mat-raised-button color="warn" class="float-right">
+        Clear All
+      </button>
+    </div>
+    <button style="color: white; background-color: #3BB143;" (click)="onCheckout()" mat-raised-button
+      class="float-right">
+      Proceed To Checkout
+    </button>
+  </div>
 </div>
 }
 @else {
