@@ -1,4 +1,4 @@
-@if (cart.items.length) {
+@if (cart.items.length && !cartResponsiv) {
 <mat-card class="max-w-7xl mx-auto">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full">
     <ng-container matColumnDef="product">
@@ -69,8 +69,14 @@
     <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
   </table>
 </mat-card>
+} @else if (cart.items.length && cartResponsiv) {
+<div>
+
+
+<div></div>
+</div>
 }
-@if (!cart.items.length) {
+@else {
 <mat-card class="height flex flex-col items-center justify-center gap-3 mx-auto border-x max-w-7xl">
   <p><strong>Your cart is empty.</strong></p>
   <button mat-raised-button routerLink="/home">Continue shopping</button>

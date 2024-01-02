@@ -45,14 +45,20 @@ export class CartComponent {
     'total',
     'action',
   ];
+  cartResponsiv: boolean = false;
 
-  constructor(private cartService: CartService, private http: HttpClient) {}
+  constructor(private cartService: CartService, private http: HttpClient) {
+    window.addEventListener('resize', this.handleWindowResize);
+  }
 
   ngOnInit(): void {
     this.cartService.cart.subscribe((_cart: Cart) => {
       this.cart = _cart;
       this.dataSource = this.cart.items;
     });
+    setTimeout(() => {
+      this.checkWindowWidth();
+    }, 0);
   }
 
   getTotal(items: Array<CartItem>): number {
@@ -76,18 +82,29 @@ export class CartComponent {
   }
 
   onCheckout(): void {
-    debugger;
     this.http
-    .post('http://localhost:4242/checkout', {
-      items: this.cart.items,
-    })
+      .post('http://localhost:4242/checkout', {
+        items: this.cart.items,
+      })
       .subscribe(async (res: any) => {
         let stripe = await loadStripe(
           'pk_test_51OT8QiJbIN7bJt7js2HO7EATWW9BMWFQ53iGoIfpAD9XxICZzQkC1xo9g1quYWtvVQeaZV6Ij4vW4RftMWWIbhCq00pTM3pzco'
         );
         stripe?.redirectToCheckout({
-          sessionId: res.id
+          sessionId: res.id,
         });
       });
+  }
+
+  handleWindowResize = () => {
+    this.checkWindowWidth();
+  };
+
+  checkWindowWidth() {
+    if (window.innerWidth <= 1090) {
+      this.cartResponsiv = true;
+    } else {
+      this.cartResponsiv = false;
+    }
   }
 }
