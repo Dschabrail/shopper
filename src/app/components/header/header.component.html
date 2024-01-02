@@ -5,10 +5,12 @@
         }
         <a routerLink="home">shop<span style="color: #3BB341;">per</span></a>
     </div>
+    @if (isNotCartRoute()) {
     <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon aria-hidden="false" [matBadge]="itemsQuantity" [matBadgeHidden]="!itemsQuantity" matBadgeColor="warn">
             shopping_cart</mat-icon>
     </button>
+    }
     <mat-menu #menu="matMenu">
         <div class="p-3 divide-y divide-solid">
             <div class="pb-3 flex justify-between">
