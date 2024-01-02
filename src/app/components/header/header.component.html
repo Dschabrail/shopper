@@ -1,6 +1,10 @@
 <mat-toolbar class="max-w-7xl mx-auto border-x justify-between">
-    <div class="flex items-center gap-4"><mat-icon class="menu" (click)="toggleSideNav()">menu</mat-icon> <a
-            routerLink="home">shop<span style="color: #3BB341;">per</span></a></div>
+    <div class="flex items-center gap-4">
+        @if (isNotCartRoute()) {
+        <mat-icon class="menu" (click)="toggleSideNav()">menu</mat-icon>
+        }
+        <a routerLink="home">shop<span style="color: #3BB341;">per</span></a>
+    </div>
     <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon aria-hidden="false" [matBadge]="itemsQuantity" [matBadgeHidden]="!itemsQuantity" matBadgeColor="warn">
             shopping_cart</mat-icon>

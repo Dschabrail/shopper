@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { Cart, CartItem } from '../models/cart.model';
 import { CartService } from '../../services/cart.service';
 import { GlobalVariableService } from '../../services/global-variable.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -42,7 +43,8 @@ export class HeaderComponent {
 
   constructor(
     private cartService: CartService,
-    private variableService: GlobalVariableService
+    private variableService: GlobalVariableService,
+    private router: Router
   ) {}
 
   getTotal(items: Array<CartItem>): number {
@@ -55,5 +57,9 @@ export class HeaderComponent {
 
   toggleSideNav() {
     this.variableService.sideNaveOpen = !this.variableService.sideNaveOpen;
+  }
+
+  isNotCartRoute(): boolean {
+    return this.router.url !== '/cart';
   }
 }
