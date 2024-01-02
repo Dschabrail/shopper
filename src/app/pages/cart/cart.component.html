@@ -72,8 +72,14 @@
 </mat-card>
 } @else if (cart.items.length && cartResponsiv) {
 <div>
+  <div>
+@for (item of cartService.cart.value.items; track $index) {
+<div class="p-3 border-b">
+<img class="h-20" src="{{item.product}}" alt="product">
+</div>
+}
 
-
+  </div>
   <div class="flex justify-between p-3 gap-4">
     <div class="flex gap-3">
       <button mat-raised-button routerLink="/home">Continue Shopping</button>

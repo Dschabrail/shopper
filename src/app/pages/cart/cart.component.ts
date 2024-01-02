@@ -47,7 +47,7 @@ export class CartComponent {
   ];
   cartResponsiv: boolean = false;
 
-  constructor(private cartService: CartService, private http: HttpClient) {
+  constructor(public cartService: CartService, private http: HttpClient) {
     window.addEventListener('resize', this.handleWindowResize);
   }
 

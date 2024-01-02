@@ -17,8 +17,10 @@ export class CartService {
 
     if (itemsInCart) {
       itemsInCart.quantity += 1;
+      console.log(this.cart.value.items)
     } else {
       items.push(item);
+      console.log(this.cart.value.items)
     }
     this.cart.next({ items });
     this._snackBar.open('1 item added to cart.', 'Ok', { duration: 3000 });
