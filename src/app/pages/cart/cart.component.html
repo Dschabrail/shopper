@@ -74,14 +74,26 @@
 <div>
   <div>
     @for (item of cartService.cart.value.items; track $index) {
-    <div class="p-3 border-b flex items-center">
+    <div class="p-3 border-b flex items-center justify-between">
       <div class="relative">
-        <mat-icon class="absolute bg-red-600 rounded-xl text-white position" (click)="onRemoveFromCart(item)">close</mat-icon>
-      <img class="max-h-20 max-w-24" src="{{item.product}}" alt="product">
-    </div>
+        <mat-icon class="absolute bg-red-600 rounded-xl text-white position"
+          (click)="onRemoveFromCart(item)">close</mat-icon>
+        <img class="max-h-20 max-w-24" src="{{item.product}}" alt="product">
+      </div>
+      <div class="w-48">
+        <span>{{item.name}}</span>
+        <div>
+
+        </div>
+      </div>
     </div>
     }
-
+  </div>
+  <div class="p-3 flex justify-between">
+    <span><strong>Total:</strong></span>
+    <span class="font-bold">{{
+      getTotal(cart.items) | currency: 'EUR'
+      }}</span>
   </div>
   <div class="flex justify-between p-3 gap-4">
     <div class="flex gap-3">
