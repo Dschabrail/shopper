@@ -4,11 +4,12 @@ import { MatListModule } from '@angular/material/list';
 import { StoreService } from '../../../../services/store.service';
 import { Subscription } from 'rxjs';
 import { GlobalVariableService } from '../../../../services/global-variable.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-filters',
   standalone: true,
-  imports: [MatExpansionModule, MatListModule],
+  imports: [MatExpansionModule, MatListModule, CommonModule],
   templateUrl: './filters.component.html',
   styleUrl: './filters.component.scss',
 })
@@ -16,6 +17,7 @@ export class FiltersComponent {
   @Output() showCategory = new EventEmitter<string | undefined>();
   categories: string[] | undefined;
   categoriesSubscription: Subscription | undefined;
+  selectedCategory: string | undefined;
 
   constructor(
     private storeService: StoreService,
@@ -31,6 +33,7 @@ export class FiltersComponent {
   }
 
   onShowCategory(category: string | undefined): void {
+    this.selectedCategory = category;
     if(window.innerWidth <= 1200){
       this.showCategory.next(category);
       this.variableService.sideNaveOpen = false;
