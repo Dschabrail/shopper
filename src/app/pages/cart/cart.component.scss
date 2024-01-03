@@ -13,7 +13,7 @@
 }
 
 @media (max-width: 780px) {
-  .padding{
+  .padding {
     padding: 0.75rem 2rem;
   }
 }
@@ -22,7 +22,16 @@
   .height {
     max-height: calc(100vh - 56px);
   }
-  .padding{
+  .padding {
     padding: 0.75rem;
+  }
+}
+
+@media (max-width: 508px) {
+  .mdc-button--raised {
+    padding: 6px !important;
+  }
+  .mat-mdc-raised-button {
+    height: fit-content;
   }
 }
