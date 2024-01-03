@@ -76,9 +76,9 @@
 <div>
   <div>
     @for (item of cartService.cart.value.items; track $index) {
-    <div class="p-3 border-b flex items-center justify-between">
+    <div class="padding border-b flex items-center justify-between">
       <div class="relative">
-        <mat-icon class="absolute bg-red-600 rounded-xl text-white position"
+        <mat-icon class="cursor-pointer absolute bg-red-600 rounded-xl text-white position"
           (click)="onRemoveFromCart(item)">close</mat-icon>
         <img class="max-h-20 max-w-24" src="{{item.product}}" alt="product">
       </div>
@@ -87,21 +87,22 @@
         <div class="flex items-center gap-1">
           <span>Quantity:</span>
           <div class="flex items-center gap-1">
-            <mat-icon (click)="onRemoveQuantity(item)">remove</mat-icon><span>{{item.quantity}}</span><mat-icon
-              (click)="onAddQuantity(item)">add</mat-icon>
+            <mat-icon class="cursor-pointer"
+              (click)="onRemoveQuantity(item)">remove</mat-icon><span>{{item.quantity}}</span><mat-icon
+              class="cursor-pointer" (click)="onAddQuantity(item)">add</mat-icon>
           </div>
         </div>
       </div>
     </div>
     }
   </div>
-  <div class="p-3 flex justify-between">
+  <div class="padding flex justify-between">
     <span><strong>Total:</strong></span>
     <span class="font-bold">{{
       getTotal(cart.items) | currency: 'EUR'
       }}</span>
   </div>
-  <div class="flex justify-between p-3 gap-4">
+  <div class="flex justify-between padding gap-4">
     <div class="flex gap-3">
       <button mat-raised-button routerLink="/home">Continue Shopping</button>
       <button (click)="clearCart()" mat-raised-button color="warn" class="float-right">
