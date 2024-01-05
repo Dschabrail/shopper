@@ -82,18 +82,23 @@ export class CartComponent {
   }
 
   onCheckout(): void {
-    this.http
-      .post('http://localhost:4242/checkout', {
-        items: this.cart.items,
-      })
-      .subscribe(async (res: any) => {
-        let stripe = await loadStripe(
-          'pk_test_51OT8QiJbIN7bJt7js2HO7EATWW9BMWFQ53iGoIfpAD9XxICZzQkC1xo9g1quYWtvVQeaZV6Ij4vW4RftMWWIbhCq00pTM3pzco'
-        );
-        stripe?.redirectToCheckout({
-          sessionId: res.id,
+    try {
+      debugger;
+      this.http
+        .post('http://localhost:4242/checkout', {
+          items: this.cart.items,
+        })
+        .subscribe(async (res: any) => {
+          let stripe = await loadStripe(
+            'pk_test_51OT8QiJbIN7bJt7js2HO7EATWW9BMWFQ53iGoIfpAD9XxICZzQkC1xo9g1quYWtvVQeaZV6Ij4vW4RftMWWIbhCq00pTM3pzco'
+          );
+          stripe?.redirectToCheckout({
+            sessionId: res.id,
+          });
         });
-      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   handleWindowResize = () => {
