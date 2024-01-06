@@ -13,32 +13,34 @@ const stripe = require("stripe")(
 );
 
 app.post("/checkout", async (req, res, next) => {
-    try {
-        const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
-        shipping_address_collection: {
-        allowed_countries: ['AT', 'DE'],
+  try {
+    console.log("Anfrage empfangen:", req.body);
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      shipping_address_collection: {
+        allowed_countries: ["AT", "DE"],
+      },
+      line_items: req.body.items.map((item) => ({
+        price_data: {
+          currency: "EUR",
+          product_data: {
+            name: item.name,
+            images: [item.product],
+          },
+          unit_amount: item.price * 100,
         },
-           line_items:  req.body.items.map((item) => ({
-            price_data: {
-              currency: 'EUR',
-              product_data: {
-                name: item.name,
-                images: [item.product]
-              },
-              unit_amount: item.price * 100,
-            },
-            quantity: item.quantity,
-          })),
-           mode: "payment",
-           success_url: "http://localhost:4242/success.html",
-           cancel_url: "http://localhost:4242/cancel.html",
-        });
-
-        res.status(200).json(session);
-    } catch (error) {
-        next(error);
-    }
+        quantity: item.quantity,
+      })),
+      mode: "payment",
+      success_url: "https://shopper.dschabrail-isaev.at:3001/success.html",
+      cancel_url: "https://shopper.dschabrail-isaev.at:3001/cancel.html",
+    });
+    console.log("Session created successfully");
+    res.status(200).json(session);
+  } catch (error) {
+    console.error("Error during session creation:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
-app.listen(4242, () => console.log("app is running on 4242"));
+app.listen(3001, () => console.log("app is running on 3001"));

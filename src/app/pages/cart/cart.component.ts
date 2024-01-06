@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CartService } from '../../services/cart.service';
 import { HttpClient } from '@angular/common/http';
 import { loadStripe } from '@stripe/stripe-js';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cart',
@@ -82,23 +83,28 @@ export class CartComponent {
   }
 
   onCheckout(): void {
-    try {
-      debugger;
-      this.http
-        .post('http://localhost:4242/checkout', {
-          items: this.cart.items,
+    this.http
+      .post('https://shopper.dschabrail-isaev.at:3001/checkout', {
+        items: this.cart.items,
+      })
+      .pipe(
+        catchError((error) => {
+          console.error('HTTP error during checkout:', error);
+          throw error; // Rethrow the error to propagate it further
         })
-        .subscribe(async (res: any) => {
+      )
+      .subscribe(async (res: any) => {
+        try {
           let stripe = await loadStripe(
             'pk_test_51OT8QiJbIN7bJt7js2HO7EATWW9BMWFQ53iGoIfpAD9XxICZzQkC1xo9g1quYWtvVQeaZV6Ij4vW4RftMWWIbhCq00pTM3pzco'
           );
           stripe?.redirectToCheckout({
             sessionId: res.id,
           });
-        });
-    } catch (error) {
-      console.log(error);
-    }
+        } catch (error) {
+          console.error('Stripe error during checkout:', error);
+        }
+      });
   }
 
   handleWindowResize = () => {
